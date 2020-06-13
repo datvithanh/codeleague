@@ -41,10 +41,11 @@ def check_brushing(shop_records, shopid):
         starttime = str2timestamp(shop_records[i][-1])
         for j in range(i+1, len(shop_records)):
             curtime = str2timestamp(shop_records[j][-1])
-            if curtime - starttime < 3600:
+            if curtime - starttime <= 3600:
                 interval.append(shop_records[j])
-
-        suspicious_users = suspicious_users + check_interval(interval)
+            else:
+                break
+            suspicious_users = suspicious_users + check_interval(interval)
 
     if len(suspicious_users) > 0:
         with open(f'shops/{shopid}.txt', 'w+') as f:

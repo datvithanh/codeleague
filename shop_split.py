@@ -17,4 +17,4 @@ for row in tqdm(npar):
     else:
         shops[row[1]] = [row]
 
-Parallel(n_jobs=4)(delayed(check_brushing)(shops[k], k) for k, _ in tqdm(shops.items()))
+Parallel(n_jobs=8)(delayed(check_brushing)(shops[k], k) for k, _ in tqdm(shops.items()))

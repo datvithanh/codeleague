@@ -1,0 +1,1 @@
+run run.sh to generate submission.csv

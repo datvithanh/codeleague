@@ -22,7 +22,8 @@ def check_interval(interval):
                 suspicious_users = [k]
             else:
                 if v == max_order_propotion:
-                    suspicious_users.append(k)
+                    # suspicious_users.append(k)
+                    pass
                 else:
                     pass
         return suspicious_users

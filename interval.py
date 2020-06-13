@@ -59,6 +59,7 @@ def check_brushing(shop_records, shopid):
             if check_interval(interval):
                 longgest_interval = interval
                 last_idx = j
+                break
 
         brushing_records = brushing_records + longgest_interval
 

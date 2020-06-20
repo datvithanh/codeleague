@@ -59,7 +59,6 @@ def check_brushing(shop_records, shopid):
             if check_interval(interval):
                 longgest_interval = interval
                 last_idx = j
-                break
 
         brushing_records = brushing_records + longgest_interval
 
@@ -69,5 +68,3 @@ def check_brushing(shop_records, shopid):
         with open(f'shops/{shopid}.txt', 'w+') as f:
             for i in set(suspicious_users):
                 f.write(f'{shopid},{i}\n')
-        
-

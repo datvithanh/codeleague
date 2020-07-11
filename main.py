@@ -12,13 +12,6 @@ npar = np.array(df)
 
 sla_mat = [[3, 5, 7, 7], [5, 5, 7, 7], [7, 7, 7, 7], [7, 7, 7, 7]]
 
-def deststr2idx(s):
-    dests = ['Metro Manila', 'Luzon', 'Visayas', 'Mindanao']
-    for idx, dest in enumerate(dests):
-        if i.lower() in s.lower():
-            return idx
-    return False
-
 def timestamp2date(ts):
     dt = datetime.fromtimestamp(ts)
     dt = dt.replace(hour=0, minute=0, second=0)

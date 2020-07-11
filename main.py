@@ -74,15 +74,15 @@ def process_order(row):
     
     if (date_2st_attempt - date_1st_attempt).days > 3:
         return 1
-    
-    num_holidays = count_holidays(date_pick, date_2st_attempt)
-    num_sundays = count_sundays(date_pick, date_2st_attempt)
-    delta = date_2st_attempt - date_pick
-    total_days = delta.days - num_holidays - num_sundays
-    if total_days <= sla:
-        return 0
-    
-    return 1
+    return 0
+#    num_holidays = count_holidays(date_pick, date_2st_attempt)
+#    num_sundays = count_sundays(date_pick, date_2st_attempt)
+#    delta = date_2st_attempt - date_pick
+#    total_days = delta.days - num_holidays - num_sundays
+#    if total_days <= sla:
+#        return 0
+#    
+#    return 1
 
 islate = Parallel(n_jobs=12)(delayed(process_order)(row) for row in tqdm(npar))
 ids = [tmp[0] for tmp in npar]

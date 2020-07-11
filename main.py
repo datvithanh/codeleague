@@ -84,7 +84,8 @@ def process_order(row):
 #    
 #    return 1
 
-islate = Parallel(n_jobs=12)(delayed(process_order)(row) for row in tqdm(npar))
+#islate = Parallel(n_jobs=12)(delayed(process_order)(row) for row in tqdm(npar))
+islate = [process_order(row) for row in tqdm(npar)]
 ids = [tmp[0] for tmp in npar]
 
 with open('submission.csv', 'w+') as f:

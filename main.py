@@ -12,13 +12,6 @@ npar = np.array(df)
 
 sla_mat = [[3, 5, 7, 7], [5, 5, 7, 7], [7, 7, 7, 7], [7, 7, 7, 7]]
 
-def deststr2idx(s):
-    dests = ['Metro Manila', 'Luzon', 'Visayas', 'Mindanao']
-    for idx, dest in enumerate(dests):
-        if i.lower() in s.lower():
-            return idx
-    return False
-
 def timestamp2date(ts):
     dt = datetime.fromtimestamp(ts)
     dt = dt.replace(hour=0, minute=0, second=0)
@@ -55,7 +48,7 @@ def count_holidays(start, end):
 def count_sundays(start, end):
     count = 0
     for i in range(10000):
-        date = start + timedelta(days=1)
+        date = start + timedelta(days=i)
         if date > end: 
             break
         if date.weekday() == 6:
@@ -79,7 +72,7 @@ def process_order(row):
     
     date_2st_attempt = timestamp2date(row[3])
     
-    if (date_2st_attempt - date_1st_attempt).days >= 3:
+    if (date_2st_attempt - date_1st_attempt).days > 3:
         return 1
     
     num_holidays = count_holidays(date_pick, date_2st_attempt)
@@ -91,7 +84,7 @@ def process_order(row):
     
     return 1
 
-islate = Parallel(n_jobs=80)(delayed(process_order)(row) for row in tqdm(npar))
+islate = Parallel(n_jobs=12)(delayed(process_order)(row) for row in tqdm(npar))
 ids = [tmp[0] for tmp in npar]
 
 with open('submission.csv', 'w+') as f:
